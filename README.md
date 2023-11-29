@@ -80,6 +80,13 @@ If not,run:
 sudo apt install ros-noetic-gazebo-ros-pkgs
 ```
 
+### Clone the project into the catkin folder
+
+```shell
+cd ~/catkin_ws
+git clone git@github.com:EyalBrilling/pinpointBot.git
+```
+
 ## Additional resources
 
 ### Package organization
