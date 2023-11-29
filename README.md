@@ -6,9 +6,9 @@ An implementation of a robot reaching map coordinations given by a user command,
 
 The project uses Gazebo Citadel and ROS1 Noetic
 
-## Setup ROS
+### Setup ROS
 
-### Download ROS
+#### Download ROS
 
 Setup your computer to accept software from packages.ros.org:
 
@@ -35,7 +35,22 @@ Install ros-noetic with desktop features:
 sudo apt install ros-noetic-desktop-full
 ```
 
-### Setup the enviorment
+### Create a ROS workspace
+
+#### Create catkin_ws folder
+
+If you don't have a ROS workspace(catkin_ws), create one. Open a terminal and run:
+
+```shell
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws/src
+catkin_init_workspace
+cd ..
+catkin_make
+source devel/setup.bash
+```
+
+#### Source ROS enviorment variables
 
 You must source this script in every bash terminal you use ROS in.
 
@@ -63,6 +78,13 @@ If not,run:
 
 ```shell
 sudo apt install ros-noetic-gazebo-ros-pkgs
+```
+
+### Clone the project into the catkin folder
+
+```shell
+cd ~/catkin_ws
+git clone git@github.com:EyalBrilling/pinpointBot.git
 ```
 
 ## Additional resources
