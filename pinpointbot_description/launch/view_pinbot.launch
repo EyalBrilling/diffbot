@@ -1,0 +1,11 @@
+<launch>
+
+  <arg name="model" default="$(find pinpointbot_description)/urdf/pinpoint_robot.urdf.xacro"/>
+  <arg name="gui" default="true" />
+  <arg name="rvizconfig" default="$(find pinpointbot_description)/rviz/urdf.rviz" />
+
+  <param name="robot_description" command="$(find xacro)/xacro $(find pinpointbot_description)/urdf/pinpoint_robot.urdf.xacro" />
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+
+</launch>
