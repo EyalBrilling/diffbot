@@ -1,9 +1,41 @@
 <?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="pinpointbot">
 
-<xacro:include filename="example_include.xacro" />
+<xacro:include filename="pinpoint_include.xacro" />
 
 <link name="world"></link>
 
+<joint name="base_joint" type="fixed">
+        <origin xyz="1.5 1.0 1.0" rpy="0 0 0"/>
+        <parent link="world"/>
+        <child link="base_link"/>        
+    </joint>
 
-
+    <link name="base_link">
+        <visual>
+            <origin xyz="0 0 0.05" rpy="0 0 0"/>
+            <geometry>
+                <box size="10 10 5.1" />
+            </geometry>
+            <material name="red">
+                <color rgba="255 0 0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0.05" rpy="0 0 0"/>
+            <geometry>
+                <box size="2.5 1.5 0.1" />
+            </geometry>
+        </collision>
+        <xacro:box_inertia m="0.5" x="0.5" y="0.25" z="0.15">
+        </xacro:box_inertia>
+    </link>
+<!---
+<xacro:cylinder_inertia m="${wheel_props['mass']}"
+                              r="${wheel_props['radius']}"
+                              l="${wheel_props['length']}"
+                              o_xyz="0.0 0.0 0.0"
+                              o_rpy="${pi/2.0} 0.0 0.0" >
+</xacro:cylinder_inertia> 
+-->
 </robot>
