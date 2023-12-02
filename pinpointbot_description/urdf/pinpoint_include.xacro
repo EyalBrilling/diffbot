@@ -38,7 +38,18 @@
       <origin xyz="${o_xyz}" rpy="${o_rpy}" />
     </inertial>
   </xacro:macro>
+  
+<!--
+  params:
+  - m [float]: link mass;
+  - r [float]: sphere radius;
+-->
 
-
+  <xacro:macro name="sphere_inertia" params="m r">
+    <inertial>
+      <mass value="${m}"/>
+      <inertia ixx="${2.0*m*(r*r)/5.0}" ixy="0.0" ixz="0.0" iyy="${2.0*m*(r*r)/5.0}" iyz="0.0" izz="${2.0*m*(r*r)/5.0}"/>
+    </inertial>
+  </xacro:macro>
 
 </robot>
