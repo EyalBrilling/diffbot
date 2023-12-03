@@ -87,6 +87,20 @@ cd ~/catkin_ws
 git clone git@github.com:EyalBrilling/pinpointBot.git
 ```
 
+## Launching gazebo and ros nodes
+
+We will launch gazebo and nodes using a launch file.
+
+```shell
+roslaunch gazebo_ros <world.launch>
+```
+
+or to launch a specific world:
+
+```shell
+roslaunch diffbot_gazebo diffbot.launch
+```
+
 ## Additional resources
 
 ### Package organization
