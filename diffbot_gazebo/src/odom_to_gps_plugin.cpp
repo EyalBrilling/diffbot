@@ -58,9 +58,9 @@ void OdomToGpsPlugin::odomCallback(const nav_msgs::Odometry::ConstPtr& msg)
    gps_info.latitude = odom_info.pose.pose.position.x + X_ODOM_TO_GPS;
    gps_info.longitude = odom_info.pose.pose.position.y + Y_ODOM_TO_GPS;
 
-//    #ifdef DEBUG
+   #ifdef DEBUG
    ROS_INFO("Resulted sensor_msgs::NavSatFix message:[%f, %f]", gps_info.latitude, gps_info.longitude);
-//    #endif
+   #endif
 
 }
 
