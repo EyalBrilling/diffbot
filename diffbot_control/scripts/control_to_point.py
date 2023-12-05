@@ -56,3 +56,17 @@ targetSub = rospy.Subscriber("/target_location",GeoPoint,targetCallback)
 robotTwistPub = rospy.Publisher("/diffbot/mobile_base_controller/cmd_vel",Twist,queue_size=1)
 rate = rospy.Rate(10)
 #robotGpsLocationSub= rospy.Subscriber("/robot_location")
+
+robotTwist = Twist()
+
+while not rospy.is_shutdown():
+    xDiffRobotTarget = goal.x - robotLoc.x
+    yDiffRobotTarget = goal.y - robotLoc.y
+
+    angle_to_goal = atan2(yDiffRobotTarget , xDiffRobotTarget)
+    if abs(angle_to_goal - theta) > 0.05:
+        robotTwist.angular.z = 0.3
+    else:
+        robotTwist.angular.z = 0.0
+    robotTwistPub.publish(robotTwist)
+    rate.sleep()
