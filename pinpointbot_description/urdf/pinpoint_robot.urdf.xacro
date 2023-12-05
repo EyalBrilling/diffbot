@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-
-<xacro:include filename="example_include.xacro" />
-
-<link name="world"></link>
-
-
-
-</robot>
