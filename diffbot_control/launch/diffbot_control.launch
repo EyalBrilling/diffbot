@@ -25,10 +25,6 @@
         <remap from="/joint_states" to="/diffbot/joint_states" />
         <!-- param name="publish_frequency" type="double" value="30.0" /-->
     </node>
-
-    <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
-        <param name="default_topic" value="/diffbot/mobile_base_controller/cmd_vel"/>
-    </node>
     
     <node pkg="diffbot_control" type="control_to_point.py" name="to_point_controller" output="screen">
   </node>
