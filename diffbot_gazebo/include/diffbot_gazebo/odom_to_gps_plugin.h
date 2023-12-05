@@ -52,6 +52,8 @@ namespace gazebo
     boost::thread callback_queue_thread_;
     bool alive_;
 
+    
+
    };
 
 }

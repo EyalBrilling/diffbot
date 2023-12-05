@@ -1,6 +1,9 @@
 #include <gazebo/physics/physics.hh>
 #include <diffbot_gazebo/odom_to_gps_plugin.h>
 
+#define X_ODOM_TO_GPS 32.072734
+#define Y_ODOM_TO_GPS 34.787465
+   
 namespace gazebo {
 
 void OdomToGpsPlugin::Load(physics::WorldPtr _world, sdf::ElementPtr _sdf){
@@ -35,6 +38,8 @@ void OdomToGpsPlugin::Load(physics::WorldPtr _world, sdf::ElementPtr _sdf){
 
     this->callback_queue_thread_ = 
       boost::thread(boost::bind(&OdomToGpsPlugin::QueueThread, this));
+      
+
 }
 
 void OdomToGpsPlugin::onUpdate(){
@@ -46,6 +51,17 @@ void OdomToGpsPlugin::odomCallback(const nav_msgs::Odometry::ConstPtr& msg)
    #ifdef DEBUG
    ROS_INFO("Received Odometry message. Pose: [%f, %f, %f]", msg->pose.pose.position.x, msg->pose.pose.position.y, msg->pose.pose.position.z);
    #endif
+   odom_info.pose.pose.position.x = msg->pose.pose.position.x;
+   odom_info.pose.pose.position.y = msg->pose.pose.position.y;
+   odom_info.pose.pose.position.z = msg->pose.pose.position.z;
+
+   gps_info.latitude = odom_info.pose.pose.position.x + X_ODOM_TO_GPS;
+   gps_info.longitude = odom_info.pose.pose.position.y + Y_ODOM_TO_GPS;
+
+//    #ifdef DEBUG
+   ROS_INFO("Resulted sensor_msgs::NavSatFix message:[%f, %f]", gps_info.latitude, gps_info.longitude);
+//    #endif
+
 }
 
 void OdomToGpsPlugin::QueueThread() {
