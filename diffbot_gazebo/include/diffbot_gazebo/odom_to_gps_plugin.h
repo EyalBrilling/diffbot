@@ -48,6 +48,9 @@ namespace gazebo
 
     // Queue
     ros::CallbackQueue queue_;
+    void QueueThread();
+    boost::thread callback_queue_thread_;
+    bool alive_;
 
    };
 

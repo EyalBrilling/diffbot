@@ -33,23 +33,38 @@ void OdomToGpsPlugin::Load(physics::WorldPtr _world, sdf::ElementPtr _sdf){
     odom_subscriber_ = node_handle_->subscribe(so);
     gps_publisher_ = node_handle_->advertise<sensor_msgs::NavSatFix>(gps_topic, 1);
 
+    this->callback_queue_thread_ = 
+      boost::thread(boost::bind(&OdomToGpsPlugin::QueueThread, this));
 }
 
 void OdomToGpsPlugin::onUpdate(){
-    ROS_INFO("onUpdate");
+    
 }
 
 void OdomToGpsPlugin::odomCallback(const nav_msgs::Odometry::ConstPtr& msg)
  {
-
+   #ifdef DEBUG
    ROS_INFO("Received Odometry message. Pose: [%f, %f, %f]", msg->pose.pose.position.x, msg->pose.pose.position.y, msg->pose.pose.position.z);
-
+   #endif
 }
+
+void OdomToGpsPlugin::QueueThread() {
+    static const double timeout = 0.01;
+
+    while (alive_ && node_handle_->ok()) {
+      queue_.callAvailable(ros::WallDuration(timeout));
+    }
+  }
 
 OdomToGpsPlugin::OdomToGpsPlugin() : WorldPlugin(){
 }
 
 OdomToGpsPlugin::~OdomToGpsPlugin(){
+    alive_ = false;
+    queue_.clear();
+    queue_.disable();
+    node_handle_->shutdown();
+    callback_queue_thread_.join();
 }
 
 GZ_REGISTER_WORLD_PLUGIN(OdomToGpsPlugin)
