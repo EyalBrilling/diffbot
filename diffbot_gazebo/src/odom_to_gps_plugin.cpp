@@ -6,7 +6,6 @@ namespace gazebo {
 void OdomToGpsPlugin::Load(physics::WorldPtr _world, sdf::ElementPtr _sdf){
 
     ROS_WARN("Loading odomToGps plugin to gazebo world");
-    ROS_INFO("Received Odometry message");
 
     // load parameters
     if (!_sdf->HasElement("robotNamespace"))
@@ -37,7 +36,7 @@ void OdomToGpsPlugin::Load(physics::WorldPtr _world, sdf::ElementPtr _sdf){
 }
 
 void OdomToGpsPlugin::onUpdate(){
-
+    ROS_INFO("onUpdate");
 }
 
 void OdomToGpsPlugin::odomCallback(const nav_msgs::Odometry::ConstPtr& msg)
