@@ -28,6 +28,18 @@ longRoboticLoc = 34.787465
 # Goal location. Starting goal is (0,0)
 goal = Point(0,0,0)
 
+def odomCallback(msg):
+    global robotLoc
+    global orientation
+
+    robotLoc.x = msg.pose.pose.position.x
+    robotLoc.y = msg.pose.pose.position.y
+    orientation = msg.pose.pose.orientation
+    (_1,_2, theta) = euler_from_quaternion([orientation.x,orientation.y,orientation.z,orientation.w]) 
+
+def targetCallback(msg):
+    global xGoal,yGoal
+    xGoal,yGoal = calculateXYtarget(msg.latitude,msg.longitude)
 
 # Calculate x and y in sim based on diff between starting and target geoPoints
 def calculateXYtarget(targetLatitude,targetLongitude):
