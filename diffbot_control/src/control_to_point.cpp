@@ -21,7 +21,7 @@ void ControlToPointPlugin::Load(physics::WorldPtr _world, sdf::ElementPtr _sdf){
       // Topic names
       std::string velocity_topic = "/diffbot/mobile_base_controller/cmd_vel";
       std::string odom_topic ="/diffbot/mobile_base_controller/odom";
-      std::string goal_
+      std::string goal_topic = "/target_location";
 
      node_handle_ = new ros::NodeHandle("controlToPoint");
 
@@ -32,7 +32,7 @@ void ControlToPointPlugin::Load(physics::WorldPtr _world, sdf::ElementPtr _sdf){
           ros::VoidPtr(),&queue_);
 
     odom_subscriber_ = node_handle_->subscribe(so);
-    gps_publisher_ = node_handle_->advertise<sensor_msgs::NavSatFix>(gps_topic, 1);
+    velocity_publisher_ = node_handle_->advertise<geometry_msgs::Twist>(gps_topic, 1);
 
     this->callback_queue_thread_ = 
       boost::thread(boost::bind(&ControlToPointPlugin::QueueThread, this));
