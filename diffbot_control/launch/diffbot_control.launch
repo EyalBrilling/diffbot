@@ -29,4 +29,7 @@
     <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
         <param name="default_topic" value="/diffbot/mobile_base_controller/cmd_vel"/>
     </node>
+    
+    <node pkg="diffbot_control" type="control_to_point.py" name="to_point_controller" output="screen">
+  </node>
 </launch>
