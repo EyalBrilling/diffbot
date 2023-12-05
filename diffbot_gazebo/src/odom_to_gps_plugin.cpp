@@ -40,7 +40,7 @@ void OdomToGpsPlugin::onUpdate(){
 
 }
 
-void odomCallback(const nav_msgs::Odometry::ConstPtr& msg)
+void OdomToGpsPlugin::odomCallback(const nav_msgs::Odometry::ConstPtr& msg)
  {
 
    ROS_INFO("Received Odometry message. Pose: [%f, %f, %f]", msg->pose.pose.position.x, msg->pose.pose.position.y, msg->pose.pose.position.z);
