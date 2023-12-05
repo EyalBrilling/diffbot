@@ -7,5 +7,6 @@
     <include>
       <uri>model://sun</uri>
     </include>
+    <plugin name="gps_plugin" filename="libgps_plugin.so"/>
   </world>
 </sdf>
