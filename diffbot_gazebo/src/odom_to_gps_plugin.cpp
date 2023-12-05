@@ -43,7 +43,7 @@ void OdomToGpsPlugin::Load(physics::WorldPtr _world, sdf::ElementPtr _sdf){
 }
 
 void OdomToGpsPlugin::onUpdate(){
-    
+    gps_publisher_.publish(gps_info);
 }
 
 void OdomToGpsPlugin::odomCallback(const nav_msgs::Odometry::ConstPtr& msg)
