@@ -29,6 +29,15 @@ longRoboticLoc = 34.787465
 goal = Point(0,0,0)
 
 
+# Calculate x and y in sim based on diff between starting and target geoPoints
+def calculateXYtarget(targetLatitude,targetLongitude):
+    latDiff = targetLatitude - latStartRobotLoc
+    longDiff = targetLongitude - latStartRobotLoc
+    targetX = latDiff * LATITUDE_TO_METER
+    targetY = longDiff * LONGITUDE_TO_METER
+    return targetX,targetY
+
+
 rospy.init_node("to_point_controller")
 odomSub = rospy.Subscriber("/diffbot/mobile_base_controller/odom",Odometry,odomCallback)
 targetSub = rospy.Subscriber("/target_location",GeoPoint,targetCallback)
