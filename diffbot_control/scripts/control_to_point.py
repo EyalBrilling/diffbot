@@ -6,6 +6,29 @@ from geographic_msgs.msg import GeoPoint
 from tf.transformations import euler_from_quaternion
 from math import atan2
 
+# Approximation of meters to WGS 84.(Notice it only works as the map is bounded by 500 meters)
+
+LATITUDE_TO_METER = 111000
+LONGITUDE_TO_METER = 73000
+
+# starting robot position
+xStartRobotLoc = 0.0
+yStartRobotLoc = 0.0
+
+latStartRobotLoc = 32.072734
+longStartRobotLoc = 34.787465
+
+# Robot Position and orien
+robotLoc = Point(0,0,0)
+theta = 0.0
+
+latRobotLoc = 32.072734
+longRoboticLoc = 34.787465
+
+# Goal location. Starting goal is (0,0)
+goal = Point(0,0,0)
+
+
 rospy.init_node("to_point_controller")
 odomSub = rospy.Subscriber("/diffbot/mobile_base_controller/odom",Odometry,odomCallback)
 targetSub = rospy.Subscriber("/target_location",GeoPoint,targetCallback)
