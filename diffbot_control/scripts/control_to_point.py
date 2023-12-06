@@ -37,14 +37,12 @@ def modelStatesCallback(modelState):
     robotLoc.x = modelState.pose.position.x
     robotLoc.y = modelState.pose.position.y
     orientation = modelState.pose.orientation
-    print("x:",robotLoc.x )
-    print("orie:",orientation)
     (roll,pitch, theta) = euler_from_quaternion([orientation.x,orientation.y,orientation.z,orientation.w]) 
     print("theta",theta)
     
 def targetCallback(msg):
     global goal
-    goal.x,goal.y = calculateXYtarget(msg.latitude,msg.longitude)
+    goal.x,goal.y = [5,5]#calculateXYtarget(msg.latitude,msg.longitude)
 
 
 # Calculate x and y in sim based on diff between starting and target geoPoints
@@ -68,10 +66,7 @@ rate = rospy.Rate(100)
 robotTwist = Twist()
 
 while not rospy.is_shutdown():
-    print("before")
     modelState =modelStatesService("diffbot","")
-    print("hello")
-    print(modelState)
     modelStatesCallback(modelState)
     xDiffRobotTarget = goal.x - robotLoc.x
     yDiffRobotTarget = goal.y - robotLoc.y
