@@ -138,7 +138,7 @@ sudo apt install ros-noetic-gazebo-ros-pkgs
 ### Clone the project into the catkin folder
 
 ```shell
-cd ~/catkin_ws
+cd ~/catkin_ws/src
 git clone git@github.com:EyalBrilling/diffbot.git
 ```
 
