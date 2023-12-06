@@ -61,11 +61,9 @@ def calculateXYtarget(targetLatitude,targetLongitude):
 rospy.init_node("to_point_controller")
 rospy.wait_for_service('/gazebo/get_model_state')
 modelStatesService = rospy.ServiceProxy('/gazebo/get_model_state', GetModelState)
-#odomSub = rospy.Subscriber("/gazebo/model_states",ModelStates,odomCallback)
 targetSub = rospy.Subscriber("/target_location",GeoPoint,targetCallback)
 robotTwistPub = rospy.Publisher("/diffbot/mobile_base_controller/cmd_vel",Twist,queue_size=1)
 rate = rospy.Rate(100)
-#robotGpsLocationSub= rospy.Subscriber("/robot_location")
  
 robotTwist = Twist()
 
