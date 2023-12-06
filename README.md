@@ -7,7 +7,7 @@ The package ros_control is used to move the actuators in the robot.
 
 - diff_bringup - Launch file to launch the simualtor and the controller together
 
-- diffbot_control - control config files and implementation for ROS control used in simulation. **Branch controller_to_point_py** docs what was tried for getting to point control.
+- diffbot_control - control config files and implementation for ROS control used in simulation. Current state is robot succeed in going to point but in meter units and not in gps units. So clicking on point in map that correspende to (6,6) in simulator works in simulation but the visulaztion isn't. Could be something in the conversion from meters to gps.
 
 - diffbot_description - URDF description for diffbot. Heavily based on [origional diffbot](https://github.com/ros-mobile-robots/diffbot)
 
