@@ -3,6 +3,7 @@ import rospy
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Point, Twist
 from geographic_msgs.msg import GeoPoint
+from gazebo_msgs.srv import GetModelState
 from tf.transformations import euler_from_quaternion
 from math import atan2
 
@@ -30,14 +31,16 @@ longRoboticLoc = 34.787465
 # Goal location. Starting goal is (0,0)
 goal = Point(0,0,0)
 
-def odomCallback(msg):
+def modelStatesCallback(modelState):
     global robotLoc
     global theta
-    robotLoc.x = msg.pose.pose.position.x
-    robotLoc.y = msg.pose.pose.position.y
-    orientation = msg.pose.pose.orientation
+    robotLoc.x = modelState.pose.position.x
+    robotLoc.y = modelState.pose.position.y
+    orientation = modelState.pose.orientation
+    print("x:",robotLoc.x )
+    print("orie:",orientation)
     (roll,pitch, theta) = euler_from_quaternion([orientation.x,orientation.y,orientation.z,orientation.w]) 
-
+    print("theta",theta)
     
 def targetCallback(msg):
     global goal
@@ -54,7 +57,9 @@ def calculateXYtarget(targetLatitude,targetLongitude):
 
 
 rospy.init_node("to_point_controller")
-odomSub = rospy.Subscriber("/diffbot/mobile_base_controller/odom",Odometry,odomCallback)
+rospy.wait_for_service('/gazebo/get_model_state')
+modelStatesService = rospy.ServiceProxy('/gazebo/get_model_state', GetModelState)
+#odomSub = rospy.Subscriber("/gazebo/model_states",ModelStates,odomCallback)
 targetSub = rospy.Subscriber("/target_location",GeoPoint,targetCallback)
 robotTwistPub = rospy.Publisher("/diffbot/mobile_base_controller/cmd_vel",Twist,queue_size=1)
 rate = rospy.Rate(100)
@@ -63,6 +68,11 @@ rate = rospy.Rate(100)
 robotTwist = Twist()
 
 while not rospy.is_shutdown():
+    print("before")
+    modelState =modelStatesService("diffbot","")
+    print("hello")
+    print(modelState)
+    modelStatesCallback(modelState)
     xDiffRobotTarget = goal.x - robotLoc.x
     yDiffRobotTarget = goal.y - robotLoc.y
     angle_to_goal = atan2(yDiffRobotTarget , xDiffRobotTarget)

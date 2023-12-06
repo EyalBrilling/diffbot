@@ -7,7 +7,7 @@ project(diffbot_control)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED rospy geometry_msgs geographic_msgs tf nav_msgs)
+find_package(catkin REQUIRED rospy geometry_msgs geographic_msgs tf nav_msgs gazebo_msgs)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -101,7 +101,7 @@ find_package(catkin REQUIRED rospy geometry_msgs geographic_msgs tf nav_msgs)
 catkin_package(
  INCLUDE_DIRS
 #  LIBRARIES diff_control
- CATKIN_DEPENDS rospy geometry_msgs geographic_msgs tf nav_msgs
+ CATKIN_DEPENDS rospy geometry_msgs geographic_msgs tf nav_msgs gazebo_msgs
 #  DEPENDS system_lib
 )
 
