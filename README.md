@@ -1,7 +1,61 @@
-# pinpointBot
+# diffBot
 
 An implementation of a robot reaching map coordinations given by a user command, using Gazebo and ROS
 The package ros_control is used to move the actuators in the robot.
+
+## Package Overview
+
+- diff_bringup - Launch file to launch the simualtor and the controller together
+
+- diffbot_control - control config files and implementation for ROS control used in simulation. **Branch controller_to_point_py** docs what was tried for getting to point control.
+
+- diffbot_description - URDF description for diffbot. Heavily based on [origional diffbot](https://github.com/ros-mobile-robots/diffbot)
+
+- diffbot_gazebo - World file for gazebo and world pluging to publish Gps coordinates calculated from odometry information.
+
+## Quick Setup
+
+Clone the project into you catkit_ws src folder:
+
+```shell
+cd ~/catkin_ws/src
+git clone git@github.com:EyalBrilling/diffbot.git
+```
+
+Source ROS enviorment variables:
+
+```shell
+source /opt/ros/noetic/setup.bash
+```
+
+Build the project using catkin:
+
+```shell
+cd ~/catkin_ws
+catkin_make
+```
+
+Source:
+
+```shell
+source devel/setup.bash
+```
+
+Now run the bringup launch file by running:
+
+```shell
+roslaunch diffbot_bringup diffbot_bringup.launch 
+```
+
+The simulator and a controller for the robot should come up on the screen.
+
+If using a gui,In the gui folder run:
+
+```shell
+python3 main.py
+```
+
+The robot will be seen traveling in the map in correspondence to the simulator.
 
 ## Setup the project
 
@@ -85,7 +139,7 @@ sudo apt install ros-noetic-gazebo-ros-pkgs
 
 ```shell
 cd ~/catkin_ws
-git clone git@github.com:EyalBrilling/pinpointBot.git
+git clone git@github.com:EyalBrilling/diffbot.git
 ```
 
 ## Launching gazebo and ros nodes

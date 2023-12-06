@@ -4,10 +4,10 @@
 #define X_SIM_TO_MAP 32.072734
 #define Y_SIM_TO_MAP 34.787465
 
-// Approximation of WGS 84 to meters.(Notice it only works as the map is bounded by 500 meters)
+// Approximation of meters to WGS 84.(Notice it only works as the map is bounded by 500 meters)
 
-#define LATITUDE_TO_METER 1/111000
-#define LONGITUDE_TO_METER 1/73000
+#define METER_TO_LATITUDE 1/111000
+#define METER_TO_LONGITUDE 1/73000
 
 // Resolution difference between sim and robot_location topic publish. e.g. 10 means every meter in sim is published as 10 meters in topic.
 
@@ -66,8 +66,8 @@ void OdomToGpsPlugin::odomCallback(const nav_msgs::Odometry::ConstPtr& msg)
 
    // Assuming robot starting position in simulator is (0,0).
    // Every meter in simulator effects GeoPoint values in const differenece.
-   gps_info.latitude = X_SIM_TO_MAP + (odom_info.pose.pose.position.x * LATITUDE_TO_METER) * MAP_TO_SIM_RESULTION;
-   gps_info.longitude = Y_SIM_TO_MAP + (odom_info.pose.pose.position.y * LONGITUDE_TO_METER) * MAP_TO_SIM_RESULTION;
+   gps_info.latitude = X_SIM_TO_MAP + (odom_info.pose.pose.position.x * METER_TO_LATITUDE) * MAP_TO_SIM_RESULTION;
+   gps_info.longitude = Y_SIM_TO_MAP + (odom_info.pose.pose.position.y * METER_TO_LONGITUDE) * MAP_TO_SIM_RESULTION;
 
    #ifdef DEBUG
    ROS_INFO("Resulted sensor_msgs::NavSatFix message:[%f, %f]", gps_info.latitude, gps_info.longitude);

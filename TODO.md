@@ -2,6 +2,17 @@
 
 ## Features
 
+- Controller to get robot into point still need to be completed. Tried math usage of odometry but error build up ruined control.
+  Will try SLAM.
+
+- Create a **Bringup package** for launch and config parameters  
+
+## Bugs
+
+## Refactoring
+
+## Complete
+
 - Create a **description package**.
   - URDF file for the robot. minimum 3 links and 2 joints.
 
@@ -16,18 +27,4 @@
     [https://classic.gazebosim.org/tutorials?tut=plugins_hello_world&cat=write_plugin](https://classic.gazebosim.org/tutorials?tut=plugins_hello_world&cat=write_plugin)
     - Guides to use the wrotten plugin: [https://www.youtube.com/watch?v=oHtQYPDGk3Y&ab_channel=GazeboSim](https://www.youtube.com/watch?v=oHtQYPDGk3Y&ab_channel=GazeboSim) [https://classic.gazebosim.org/tutorials?tut=ros_gzplugins](https://classic.gazebosim.org/tutorials?tut=ros_gzplugins)
 
-  - basic system cc and hh files.
-    - Decide if PostUpdate interface heritage is enough, if not - decide on additional interfaces(e.g. Reset abd PreUpdate functionalities)
-
-- Maybe create a seperate controller package
-
-- Create a **Bringup package** for launch and config parameters  
-  - TBD the specifics. Maybe isn't needed for the scope* of this project.
-
 - Make sure robot starts at the geographic location with coordinates 32.072734, 34.787465 (Sarona)
-  
-## Bugs
-
-## Refactoring
-
-[-] Near the end of the project submittion, run clang-format.

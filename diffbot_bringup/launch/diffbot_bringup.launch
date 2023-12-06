@@ -1,0 +1,4 @@
+<launch>
+  <include file="$(find diffbot_gazebo)/launch/diffbot_gazebo.launch"/>
+  <include file="$(find diffbot_control)/launch/diffbot_control.launch"/>
+</launch>
