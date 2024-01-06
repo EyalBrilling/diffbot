@@ -11,3 +11,30 @@ It is recommended to use those.
 
 In addition, the package `ros_gz` is used for a bridge between ROS and gazebo.  
 [ros_gz for humble installation](https://github.com/gazebosim/ros_gz/tree/humble)
+
+## Run simple world
+
+Enter the src folder with the ROS2 packages
+
+```sh
+cd ~/diffbot/src
+```
+
+Build:
+
+```sh
+colcon build
+```
+
+
+Source:
+
+```sh
+source ./install/setup.bash 
+```
+
+Run:
+
+```sh
+ign gazebo pinpointbot_gazebo/worlds/basic_world.sdf 
+```
