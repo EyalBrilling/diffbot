@@ -1,9 +1,12 @@
 # Compile folders
 install/*
 build/*
-
-* Log folders
+src/install/*
+src/build/*
+# Log folders
 log/*
+src/log*
+
 # Prerequisites
 *.d
 
