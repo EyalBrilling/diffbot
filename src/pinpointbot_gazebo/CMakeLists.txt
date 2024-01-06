@@ -11,6 +11,18 @@ find_package(ament_cmake REQUIRED)
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
+find_package(pinpointbot_description REQUIRED)
+
+find_package(ignition-cmake2 REQUIRED)
+find_package(ignition-plugin1 REQUIRED COMPONENTS register)
+set(GZ_PLUGIN_VER ${ignition-plugin1_VERSION_MAJOR})
+find_package(ignition-common4 REQUIRED COMPONENTS profiler)
+set(GZ_COMMON_VER ${ignition-common4_VERSION_MAJOR})
+
+# find_package(ignition-sim7 REQUIRED)
+# set(GZ_SIM_VER ${ignition-sim7_VERSION_MAJOR})
+# message(STATUS "Compiling against Gazebo Garden")
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
