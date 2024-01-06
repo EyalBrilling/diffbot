@@ -38,3 +38,9 @@ Run:
 ```sh
 ign gazebo pinpointbot_gazebo/worlds/basic_world.sdf 
 ```
+
+To send command, from another terminal:
+
+```sh
+ign topic -t "model/pinpointBot/cmd_vel" -m ignition.msgs.Twist -p "linear: {x: 0.5}, angular: {z: 0.05}"
+```
