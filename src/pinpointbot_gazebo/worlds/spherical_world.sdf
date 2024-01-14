@@ -18,6 +18,12 @@
       filename="ignition-gazebo-user-commands-system"
       name="gz::sim::systems::UserCommands">
     </plugin>
+    <!-- Processes the NavSat sensor -->
+        <plugin
+        filename="ignition-gazebo-navsat-system"
+        name="ignition::gazebo::systems::NavSat">
+    </plugin>
+  
 
 
     <light name="sun" type="directional">
